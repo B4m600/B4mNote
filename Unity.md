@@ -2,11 +2,13 @@
 
 [TOC]
 
-# Version:1.5
+# Version:1.5 
 
 ------
 
-# [- - -短代码块- - -]
+# [- - -短代码块- - -] 
+
+
 
 ## [C#函数]
 
@@ -80,7 +82,6 @@ var bRet= list1.Exists(t => t == 15); // 判断15是否存在于list1;
 ```
 
 <hr>
-
 ## [基础功能]
 
 <div style="background-color: cyan; height: 2px;"></div>
