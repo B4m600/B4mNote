@@ -6,6 +6,6 @@
 
 <a href="./Sources/Python.md">Python</a> 
 
-<a href="./Souces/Blender.md">Blender</a>
+<a href="./Sources/Blender.md">Blender</a>
 
 <a href="./Sources/PhotoShop.md">PhotoShop</a>
