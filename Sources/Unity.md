@@ -1805,6 +1805,16 @@ SceneManager.activeSceneChanged += OnActiveSceneChanged; // 事件的注册时�
 
 <div style="background-color: cyan; height: 2px;"></div>
 
+### AnimationCurve
+
+- Evaluate()
+
+  - `public AnimationCurve Curve;`
+
+  - `Height = Curve.Evaluate(Height);` 
+
+<div style="background-color: cyan; height: 2px;"></div>
+
 ## [常用]
 
 ### Input
@@ -2224,34 +2234,63 @@ List<int> Lis = Arr.ToList();
 ### Mathf
 
 - Sign(num);
+
 - Abs(num);
+
 - Clamp(float value, float min, float max);
+
 - Abs(num);
+
 - Ceil(num);
+
 - Floor(num);
+
 - Pow(i, j);
+
 - Lerp(float from, float to, float t)
   - 基于浮点数t返回a到b之间的插值, t限制在0到1之间, 当t=0返回from, 当t=1返回to; 
   - t=0.5返回from和to的平均值;
+  
 - ClosePowerOfTwo(value)
   - 取得离value的2次方最近的值;
+  
 - DeltaAngle(float fromAngle, float toAngle)
   - 取得两个角之间的差值; 
   - 差值保证在-180到180之间;
+  
 - PingPong(float t, flaot Length)
   - 返回0到length之间的数值，不会到0也不会到length; 
   - t只能用Time.time, 不能用固定数值; 
   - 类似乒乓球的来回运动，起始 值是0，通过t变量来控制值由0向maxValue移动，当t大于maxValue的时候又向0进行移动，然后就这样的来回往复运动，一般t变量用时间Time.deltatime来进行控制的。
+  
 - public static float **PerlinNoise** (float **x**, float **y**)
 
   - 返回介于 0.0 和 1.0 之间的值;
+  
   - 返回值可能会稍微超过1.0;
+  
   - 生成2D柏林噪声;
-  - 输入参数为整数时返回值固定;
-  - 输入参数不变返回值固定;
 
+  - 输入参数为整数时返回值固定;
+  
+  - 输入参数不变返回值固定;
+  
   - x: 采样点的X坐标;
+  
   - y: 采样点的Y坐标;
+  
+  - PerlinNoise (int i + float Offset)
+  
+    - `positions[i] = new Vector3(i * 0.1f, Mathf.PerlinNoise(i + OffsetFloat, 0f) * Height, 0);`
+  
+    - i: 递增值;
+    - Offset: 取值0.5f时峰值最大;
+  
+  - PerlinNoise (int i * float Offset)
+  
+    - `positions[i] = new Vector3(i * 0.1f, Mathf.PerlinNoise(i * OffsetFloat, 0f) * Height, 0);`
+  
+    - Offset: 取值越小返回值越平滑;
 
 #### [变量]
 
@@ -2319,7 +2358,7 @@ List<int> Lis = Arr.ToList();
 
 ### Random
 
-- InitState(seed): 通过参数指定种子; 参数一般取值时间戳:System.DataTime.Now.Ticks;
+- InitState(seed): 通过参数指定种子; 参数一般取值时间戳:`System.DataTime.Now.Ticks`;
 - insideUnitCircle: 在单位为1的圆内随机生成一个位置信息;
 - insideUnitSphere: 在单位为1的球内随机生成一个位置信息;
 
