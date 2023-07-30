@@ -82,7 +82,9 @@ var bRet= list1.Exists(t => t == 15); // 判断15是否存在于list1;
 ```
 
 <hr>
+
 ## [基础功能]
+
 
 <div style="background-color: cyan; height: 2px;"></div>
 
@@ -111,6 +113,18 @@ CancelInvoke("Func"); // 取消调用Func;
 ```
 
 <hr>
+## [数学公式]
+
+### [两向量求角]
+
+```cs
+float Angle(Vector3 a, Vector3 b)
+{
+    float dot = Vector3.Dot(a, b);
+    float det = (a.x * b.y) - (b.x * a.y);
+    return Mathf.Atan2(det, dot) * Mathf.Rad2Deg;
+}
+```
 
 ## [物理系统]
 
@@ -1435,6 +1449,12 @@ public class TMP_VanishOrArise : MonoBehaviour
 }
 ```
 
+### {U2D}
+
+
+
+
+
 <div style="background-color: cyan; height: 2px;"></div>
 
 ## [界面]
@@ -1927,12 +1947,33 @@ SceneManager.activeSceneChanged += OnActiveSceneChanged; // 事件的注册时�
 ### Vector3
 
 - Normalize(): 将一个Vector3向量长度归一化; Demo: `Vector3 v = new Vector3(1, -2, 3); v.Normalize(); //v = (1, -1, 1);`
+
 - MoveTowards(transform.position, Vector3 TargetPosition, Speed * Time.deltaTime): ;
+
 - .normalized: 返回归一化的向量;
+
 - Cross(): 叉乘运算; 通过两个向量获得另一个向量的方向;
+
 - Project(): 投影运算;
+
 - Reflect():  反射运算;
+
 - Slerp(): 按照角度进行插值; Lerp按照位置插值;
+
+- float Dot (Vector3 lhs, Vector3 rhs)
+
+  - 计算两个向量的点积;
+
+  ```cs
+  float Angle(Vector3 a, Vector3 b)
+  {
+      float dot = Vector3.Dot(a, b);
+      float det = (a.x * b.y) - (b.x * a.y);
+      return Mathf.Atan2(det, dot) * Mathf.Rad2Deg;
+  }
+  ```
+
+  
 
 <div style="background-color: cyan; height: 2px;"></div>
 
@@ -3630,15 +3671,11 @@ public Vector3 positionOffset = new Vector3(0, 0, -5); // 相机位移补偿, �
 [Header("Axis Limitation")]
 public Vector2 xLimit; // (x, y) - x: 最小x值; y: 最大x值;
 public Vector2 yLimit; // (x, y) - x: 最小y值; y: 最大y值;
-```
 
-```cs
 private void Awake(){
     target = GameObject.FindGameObjectWithTag("Player").transform;
 }
-```
 
-```cs
 private void LateUpdate(){
     Vector3 targetPosition = target.position + positionOffset;
     
