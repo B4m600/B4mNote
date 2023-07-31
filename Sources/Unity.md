@@ -1451,9 +1451,31 @@ public class TMP_VanishOrArise : MonoBehaviour
 
 ### {U2D}
 
+#### SpriteShapeRenderer
 
+- color: SpriteShape的渲染颜色;
+- maskInteraction: 指定SpriteShape如何与遮罩交互;
+- GetBounds()
+  - 获取边界数据作为NativeArray;
+  - 此NativeArray的数量始终为1;
+- GetChannels()
+  - 获取/设置SpriteShapeRenderer的网格数据数组;
+  - public void **GetChannels** (int **dataSize**, out NativeArray<ushort> **indices**, out NativeSlice<Vector3> **vertices**, out NativeSlice<Vector2> **texcoords**);
+    - dataSize: 要为NativeArray保留的大小;
+    - indices: 索引NativeArray;
+    - vertives: 顶点NativeSlice;
+    - texcoords: 通道0的纹理坐标NativeSlice;
+  - public void **GetChannels** (int **dataSize**, out NativeArray<ushort> **indices**, out NativeSlice<Vector3> **vertices**, out NativeSlice<Vector2> **texcoords**, out NativeSlice<Vector4> **tangents**);
+    - tangents: 切线NativeSlice；
+  - public void **GetChannels** (int **dataSize**, out NativeArray<ushort> **indices**, out NativeSlice<Vector3> **vertices**, out NativeSlice<Vector2> **texcoords**, out NativeSlice<Vector4> **tangents**, out NativeSlice<Vector3> **normals**);
+    - normals: 法线NativeSlice;
 
+#### SpriteShapeSegment
 
+- geomIndex: SpriteShape生成的子网格列表的几何索引;
+- indexCount: SpriteShape子网格的索引数量;
+- spriteIndex: 用于为此SpriteShapeSegment生成分段/角的Sprite的索引;
+- vertexCount: SpriteShape子网格的顶点数量;
 
 <div style="background-color: cyan; height: 2px;"></div>
 
@@ -3139,10 +3161,7 @@ public class ExampleScript : MonoBehaviour
 
 ### Tilemap
 
-`using UnityEngine.Tilemaps;`
-
-#### [Tilemap]
-
+- `using UnityEngine.Tilemaps;`
 - GetSprite(Vector3Int Pos)
   - 获取Pos上的TileBase的Sprite;
   - 当前Tilemap中该位置不存在Tile时返回null;
@@ -3498,7 +3517,41 @@ TileBase x = tilemap.GetTile(Pos);
       <tbody><tr><td class="lbl"><a href="Terrain.CreateTerrainGameObject.html">CreateTerrainGameObject</a></td><td class="desc">从 TerrainData 创建包含碰撞体的地形。</td></tr>
       <tr><td class="lbl"><a href="Terrain.SetConnectivityDirty.html">SetConnectivityDirty</a></td><td class="desc">将当前连接状态标记为无效。</td></tr>
     </tbody></table>
+### SpriteShapeController
 
+- `using UnityEngine.U2D;`
+
+- spline
+
+  - GetPointCount();
+  - GetPosition(int Index);
+
+  ```cs
+  Spline Spl = GetComponent<SpriteShapeController>().spline;
+  for (int i = 1; i < Spl.GetPointCount() - 1; ++i)
+  {
+      print($"{i}:{Spl.GetPosition(i)}");
+  }
+  ```
+
+  - SetPositions(int index, Vector3 Pos);
+  - InsertPointAt(int index, Vector3 Pos);
+  - RemovePointAt(int index, Vector3 Pos);
+  - Clear();
+    - 清除全部点;
+  - GetCorner(int index);
+  - SetCorner(int index, bool value);
+  - GetHeight(int index);
+  - SetHeight(int index, float value);
+  - GetLeftTangent(int index);
+  - SetLeftTangent(int index, Vector3 value);
+  - GetRightTangent(int index);
+  - SetRightTangent(int index, Vector3 value);
+  - GetSpriteIndex(int index);
+  - SetSpriteIndex(int index, int value);
+  - GetTangentMode(int index);
+  - SetTangentMode(int index, ShapeTangentMode mode);
+  - bool isOpenEnded;
 
 
 <div style="width: 100%; background-color: cornflowerblue; height: 5px;border: 1px blue groove;border-radius: 5px;"></div>
