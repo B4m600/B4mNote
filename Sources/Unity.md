@@ -113,7 +113,9 @@ CancelInvoke("Func"); // 取消调用Func;
 ```
 
 <hr>
+
 ## [数学公式]
+
 
 ### [两向量求角]
 
@@ -125,6 +127,27 @@ float Angle(Vector3 a, Vector3 b)
     return Mathf.Atan2(det, dot) * Mathf.Rad2Deg;
 }
 ```
+
+### [柏林噪声]
+
+```cs
+public Vector3[] GetPerlinPositions(int positionCount, float Span = 1f, float Height = 1f, int StartIndex = 0, float Lacunarity = 0.01f, int Seed = 0)
+{
+	Random.InitState(Seed);
+	float RandomOffset = Random.Range(0f, 10000f);
+		
+	Vector3[] positions = new Vector3[positionCount];
+	float sampleHeight = 0f;
+		
+	for (int i = StartIndex; i < StartIndex + positionCount; i++){
+		sampleHeight = Mathf.PerlinNoise(i * Lacunarity + RandomOffset, 0f);
+		positions[i - StartIndex] = new Vector3(i * Span, sampleHeight * Height, 0);
+	}
+	return positions;
+}
+```
+
+
 
 ## [物理系统]
 
@@ -3521,6 +3544,8 @@ TileBase x = tilemap.GetTile(Pos);
 
 - `using UnityEngine.U2D;`
 
+- RefreshSpriteShape();
+
 - spline
 
   - GetPointCount();
@@ -3551,6 +3576,9 @@ TileBase x = tilemap.GetTile(Pos);
   - SetSpriteIndex(int index, int value);
   - GetTangentMode(int index);
   - SetTangentMode(int index, ShapeTangentMode mode);
+    - TangentMode.Broken
+    - TangentMode.Linear
+    - TangentMode.Continuous
   - bool isOpenEnded;
 
 
