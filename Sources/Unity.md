@@ -147,6 +147,36 @@ public Vector3[] GetPerlinPositions(int positionCount, float Span = 1f, float He
 }
 ```
 
+### [贝塞尔曲线]
+
+```cs
+/// <param name="t">0到1的值，0获取曲线的起点，1获得曲线的终点</param>
+/// <param name="start">曲线的起始位置</param>
+/// <param name="center">决定曲线形状的控制点</param>
+/// <param name="end">曲线的终点</param>
+private Vector3 GetBezierPoint(float t, Vector3 start, Vector3 center, Vector3 end)
+{
+    return (1 - t) * (1 - t) * start + 2 * t * (1 - t) * center + t * t * end;
+}
+
+```
+
+### [几何计算]
+
+```cs
+public void 
+float k = 1.0f; // 直线的斜率  
+Vector2 A = new Vector2(1.0f, 2.0f); // 点A的坐标  
+float d = 1.0f; // 与点A的距离  
+  
+// 计算前一个点的坐标  
+float angle = Mathf.Atan(k);  
+Vector2 prevPoint = new Vector2(A.x - d * Mathf.Sin(angle), A.y - d * Mathf.Cos(angle));  
+  
+// 计算后一个点的坐标  
+Vector2 nextPoint = new Vector2(A.x + d * Mathf.Sin(angle), A.y + d * Mathf.Cos(angle));
+```
+
 
 
 ## [物理系统]
