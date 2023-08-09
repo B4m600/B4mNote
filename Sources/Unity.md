@@ -164,17 +164,13 @@ private Vector3 GetBezierPoint(float t, Vector3 start, Vector3 center, Vector3 e
 ### [几何计算]
 
 ```cs
-public void 
-float k = 1.0f; // 直线的斜率  
-Vector2 A = new Vector2(1.0f, 2.0f); // 点A的坐标  
-float d = 1.0f; // 与点A的距离  
-  
-// 计算前一个点的坐标  
-float angle = Mathf.Atan(k);  
-Vector2 prevPoint = new Vector2(A.x - d * Mathf.Sin(angle), A.y - d * Mathf.Cos(angle));  
-  
-// 计算后一个点的坐标  
-Vector2 nextPoint = new Vector2(A.x + d * Mathf.Sin(angle), A.y + d * Mathf.Cos(angle));
+public Vector3[] GetLinePoint(Vector3 Center, float k, float d)
+{
+    float angle = Mathf.Atan(k);  
+    Vector2 prevPoint = new Vector2(Center.x - d * Mathf.Sin(angle), Center.y - d * Mathf.Cos(angle));  
+    Vector2 nextPoint = new Vector2(Center.x + d * Mathf.Sin(angle), Center.y + d * Mathf.Cos(angle));
+    return new Vector3[]{prevPoint, nextPoint};
+}
 ```
 
 
@@ -257,8 +253,49 @@ rb.AddTorque(100, 0, 0);
 - ForceMode.Acceleration: 持续施加一个力, 与重力mass无关, t = 每帧间隔时间, m = 1.0f;
 - ForceMode.VelocityChange: 瞬间施加一个力, 与重力mass无关, t = 1.0f, m = 1.0f;
 
+
+
+### [射线检测]
+
+- `public bool isGround = false;`
+- public static Collider[] OverlapBox (
+  			Vector3 center, Vector3 halfExtents, 
+  			Quaternion orientation= Quaternion.identity, int layerMask= AllLayers, 
+  			QueryTriggerInteraction queryTriggerInteraction= QueryTriggerInteraction.UseGlobal
+  );
+
+```cs
+public void DetectBox(){
+    var raycastAll = Physics2D.OverlapBoxAll(transform.position,  new Vector2(0.4f,0.4f), 0, layerMask);
+    if (raycastAll.Length > 0) isGrounded = true;
+    else isGrounded = false;
+}
+```
+
+```cs
+public void DetectLine(){
+    var raycastAll = Physics2D.RaycastAll(transform.position, Vector2.down, 0.1f, layerMask);
+    if (raycastAll.Length > 0) isGrounded = true;
+    else isGrounded = false;
+}
+```
+
+```cs
+public void Temp(){
+    var _groundDetector = new RaycastHit2D[groundDetectorRayCnt];
+	_groundDetector = MirMirrorTools.Hits(transform.position, Vector3.down, groundNowLength,
+		~LayerMask.GetMask("Ignore Raycast"), Color.green, groundDetectorRayCnt, groundDetectorRayDis);
+	var onGround = _groundDetector.Any(raycast => raycast.collider != null);
+	elementType = onGround ? ElementType.Ground : ElementType.None;
+}
+```
+
+
+
 <hr>
+
 ## [特殊语法]
+
 
 <div style="background-color: cyan; height: 2px;"></div>
 
@@ -4927,6 +4964,30 @@ public class CursorPress : MonoBehaviour
 			Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
 		}
     }
+}
+
+```
+
+### [2D地面碰撞检测]
+
+```cs
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class GroundDetector : MonoBehaviour
+{
+	public static GroundDetector Instance;
+	public bool isGrounded = false;
+	private void Awake(){
+		Instance = this;
+	}
+	private void OnTriggerStay2D(Collider2D coll){
+		isGrounded = true; print("Enter");
+	}
+	private void OnTriggerExit2D(Collider2D coll){
+		isGrounded = false; print("Exit");
+	}
 }
 
 ```
