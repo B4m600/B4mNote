@@ -260,8 +260,8 @@ rb.AddTorque(100, 0, 0);
 - `public bool isGround = false;`
 - public static Collider[] OverlapBox (
   			Vector3 center, Vector3 halfExtents, 
-  			Quaternion orientation= Quaternion.identity, int layerMask= AllLayers, 
-  			QueryTriggerInteraction queryTriggerInteraction= QueryTriggerInteraction.UseGlobal
+    			Quaternion orientation= Quaternion.identity, int layerMask= AllLayers, 
+    			QueryTriggerInteraction queryTriggerInteraction= QueryTriggerInteraction.UseGlobal
   );
 
 ```cs
@@ -2601,14 +2601,14 @@ public class ExampleScript : MonoBehaviour
 
 <div style="background-color: cyan; height: 2px;"></div>
 
-### GradientAlphaKey(Constructor)
+#### GradientAlphaKey(Constructor)
 
 - alpha;
 - time;
 
 <div style="background-color: cyan; height: 2px;"></div>
 
-### GradientColorKey(Constructor)
+#### GradientColorKey(Constructor)
 
 - color;
 - time;
@@ -3647,6 +3647,153 @@ TileBase x = tilemap.GetTile(Pos);
     - TangentMode.Linear
     - TangentMode.Continuous
   - bool isOpenEnded;
+
+### Animator
+
+- Play()
+  - public void **Play** (string **stateName**, int **layer**= -1, float **normalizedTime**= float.NegativeInfinity);
+    - stateName: 状态名称;
+    - layer: 层的索引。如果 layer 为 -1，则播放第一个具有给定状态名称或哈希的状态;
+    - normalizedTime: 介于零到一之间的时间偏移;
+  - public void **Play** (int **stateNameHash**, int **layer**= -1, float **normalizedTime**= float.NegativeInfinity);
+    - stateNameHash: 状态哈希名称。如果 stateNameHash 为 0，则会更改当前状态时间;
+- GetCurrentAnimatorStateInfo()
+  - public [AnimatorStateInfo](AnimatorStateInfo.html) **GetCurrentAnimatorStateInfo** (int **layerIndex**);
+    - 返回 [AnimatorStateInfo](AnimatorStateInfo.html)，其中包含有关当前状态的信息。
+    - layerIndex: 索引层;
+
+#### [变量]
+
+| [angularVelocity](Animator-angularVelocity.html)             | 获取上一个已计算帧的化身角速率。                             |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [applyRootMotion](Animator-applyRootMotion.html)             | 是否应该应用根运动？                                         |
+| [avatar](Animator-avatar.html)                               | 获取/设置当前化身。                                          |
+| [bodyPosition](Animator-bodyPosition.html)                   | 身体质心的位置。                                             |
+| [bodyRotation](Animator-bodyRotation.html)                   | 身体质心的旋转。                                             |
+| [cullingMode](Animator-cullingMode.html)                     | 控制该动画器组件的剔除。                                     |
+| [deltaPosition](Animator-deltaPosition.html)                 | 获取上一个已计算帧的化身位置增量。                           |
+| [deltaRotation](Animator-deltaRotation.html)                 | 获取上一个已计算帧的化身旋转增量。                           |
+| [feetPivotActive](Animator-feetPivotActive.html)             | 在身体质心与脚轴心之间混合轴心点。                           |
+| [fireEvents](Animator-fireEvents.html)                       | 设置动画器是否发送 AnimationEvent 类型的事件。               |
+| [gravityWeight](Animator-gravityWeight.html)                 | 基于当前播放动画的当前重力重量。                             |
+| [hasBoundPlayables](Animator-hasBoundPlayables.html)         | 如果动画器分配有任何可播放项，则返回 true。                  |
+| [hasRootMotion](Animator-hasRootMotion.html)                 | 如果当前骨架具有根运动，则返回 true。                        |
+| [hasTransformHierarchy](Animator-hasTransformHierarchy.html) | 如果对象具有变换层级视图，则返回 true。                      |
+| [humanScale](Animator-humanScale.html)                       | 返回人形骨架当前化身的缩放（如果骨架是通用的，则默认为 1）。 |
+| [isHuman](Animator-isHuman.html)                             | 如果当前骨架为人形角色，返回 true；如果为通用，返回 false。  |
+| [isInitialized](Animator-isInitialized.html)                 | 返回动画器是否已成功初始化。                                 |
+| [isMatchingTarget](Animator-isMatchingTarget.html)           | 自动匹配是否处于激活状态。                                   |
+| [isOptimizable](Animator-isOptimizable.html)                 | 如果可以使用 AnimatorUtility.OptimizeTransformHierarchy 优化当前骨架，则返回 true。 |
+| [keepAnimatorControllerStateOnDisable](Animator-keepAnimatorControllerStateOnDisable.html) | 在 GameObject 处于禁用状态时控制动画器组件的行为。           |
+| [layerCount](Animator-layerCount.html)                       | 返回控制器中的层数。                                         |
+| [layersAffectMassCenter](Animator-layersAffectMassCenter.html) | 附加层影响质心。                                             |
+| [leftFeetBottomHeight](Animator-leftFeetBottomHeight.html)   | 获取左脚底部高度。                                           |
+| [parameterCount](Animator-parameterCount.html)               | 返回控制器中的参数数量。                                     |
+| [parameters](Animator-parameters.html)                       | 动画器使用的 AnimatorControllerParameter 列表。（只读）      |
+| [pivotPosition](Animator-pivotPosition.html)                 | 获取轴心的当前位置。                                         |
+| [pivotWeight](Animator-pivotWeight.html)                     | 获取轴心重量。                                               |
+| [playableGraph](Animator-playableGraph.html)                 | Animator 创建的 PlayableGraph。                              |
+| [playbackTime](Animator-playbackTime.html)                   | 设置录制缓冲区中的播放位置。                                 |
+| [recorderMode](Animator-recorderMode.html)                   | 获取动画器的录制器的模式。                                   |
+| [recorderStartTime](Animator-recorderStartTime.html)         | 相对于调用 StartRecording 时的帧，缓冲区第一帧的开始时间。   |
+| [recorderStopTime](Animator-recorderStopTime.html)           | 相对于调用 StartRecording 的时间，录制的剪辑的结束时间。     |
+| [rightFeetBottomHeight](Animator-rightFeetBottomHeight.html) | 获取右脚底部高度。                                           |
+| [rootPosition](Animator-rootPosition.html)                   | 根位置 - 游戏对象的位置。                                    |
+| [rootRotation](Animator-rootRotation.html)                   | 根旋转 - 游戏对象的旋转。                                    |
+| [runtimeAnimatorController](Animator-runtimeAnimatorController.html) | 控制动画器的 AnimatorController 的运行时表示。               |
+| [speed](Animator-speed.html)                                 | 动画器的播放速度。1 为正常播放速度。                         |
+| [stabilizeFeet](Animator-stabilizeFeet.html)                 | 在过渡和混合期间自动使脚稳定。                               |
+| [targetPosition](Animator-targetPosition.html)               | 返回 SetTarget 指定的目标的位置。                            |
+| [targetRotation](Animator-targetRotation.html)               | 返回 SetTarget 指定的目标的旋转。                            |
+| [updateMode](Animator-updateMode.html)                       | 指定 Animator 的更新模式。                                   |
+| [velocity](Animator-velocity.html)                           | 获取上一个已计算帧的化身速度。                               |
+
+#### [函数]
+
+| [ApplyBuiltinRootMotion](Animator.ApplyBuiltinRootMotion.html) | 应用默认的根运动。                                           |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [CrossFade](Animator.CrossFade.html)                         | 使用标准化时间创建从当前状态到任何其他状态的淡入淡出效果。   |
+| [CrossFadeInFixedTime](Animator.CrossFadeInFixedTime.html)   | 使用以秒为单位的时间创建从当前状态到任何其他状态的淡入淡出效果。 |
+| [GetAnimatorTransitionInfo](Animator.GetAnimatorTransitionInfo.html) | 返回 AnimatorTransitionInfo，其中包含有关当前过渡的信息。    |
+| [GetBehaviour](Animator.GetBehaviour.html)                   | 返回匹配类型 T 或从 T 派生的第一个 StateMachineBehaviour。如果未找到，则返回 null。 |
+| [GetBehaviours](Animator.GetBehaviours.html)                 | 返回匹配类型 T 或从 T 派生的所有 StateMachineBehaviour。如果未找到，则返回 null。 |
+| [GetBoneTransform](Animator.GetBoneTransform.html)           | 返回映射到该人形骨骼 ID 的 Transform。                       |
+| [GetBool](Animator.GetBool.html)                             | 返回给定布尔参数的值。                                       |
+| [GetCurrentAnimatorClipInfo](Animator.GetCurrentAnimatorClipInfo.html) | 返回给定层当前状态中所有 AnimatorClipInfo 的数组。           |
+| [GetCurrentAnimatorClipInfoCount](Animator.GetCurrentAnimatorClipInfoCount.html) | 返回当前状态中 AnimatorClipInfo 的数量。                     |
+| [GetCurrentAnimatorStateInfo](Animator.GetCurrentAnimatorStateInfo.html) | 返回 AnimatorStateInfo，其中包含有关当前状态的信息。         |
+| [GetFloat](Animator.GetFloat.html)                           | 返回给定 float 参数的值。                                    |
+| [GetIKHintPosition](Animator.GetIKHintPosition.html)         | 获取反向动力学提示的位置。                                   |
+| [GetIKHintPositionWeight](Animator.GetIKHintPositionWeight.html) | 获取反向动力学提示的转换权重（0 = 在反向动力学前的原始动画处，1 = 在提示处）。 |
+| [GetIKPosition](Animator.GetIKPosition.html)                 | 获取反向动力学目标的位置。                                   |
+| [GetIKPositionWeight](Animator.GetIKPositionWeight.html)     | 获取反向动力学目标的转换权重（0 = 在反向动力学前的原始动画处，1 = 在目标处）。 |
+| [GetIKRotation](Animator.GetIKRotation.html)                 | 获取反向动力学目标的旋转。                                   |
+| [GetIKRotationWeight](Animator.GetIKRotationWeight.html)     | 获取反向动力学目标的旋转权重（0 = 在反向动力学前旋转，1 = 在反向动力学目标处旋转）。 |
+| [GetInteger](Animator.GetInteger.html)                       | 返回给定整数参数的值。                                       |
+| [GetLayerIndex](Animator.GetLayerIndex.html)                 | 返回具有给定名称的层的索引。                                 |
+| [GetLayerName](Animator.GetLayerName.html)                   | 返回层名称。                                                 |
+| [GetLayerWeight](Animator.GetLayerWeight.html)               | 返回指定索引处层的权重。                                     |
+| [GetNextAnimatorClipInfo](Animator.GetNextAnimatorClipInfo.html) | 返回给定层下一个状态中所有 AnimatorClipInfo 的数组。         |
+| [GetNextAnimatorClipInfoCount](Animator.GetNextAnimatorClipInfoCount.html) | 返回下一个状态中 AnimatorClipInfo 的数量。                   |
+| [GetNextAnimatorStateInfo](Animator.GetNextAnimatorStateInfo.html) | 返回 AnimatorStateInfo，其中包含有关下一个状态的信息。       |
+| [GetParameter](Animator.GetParameter.html)                   | 请参阅 AnimatorController.parameters。                       |
+| [HasState](Animator.HasState.html)                           | 如果该层中存在状态，返回 true，否则返回 false。              |
+| [InterruptMatchTarget](Animator.InterruptMatchTarget.html)   | 中断自动目标匹配。                                           |
+| [IsInTransition](Animator.IsInTransition.html)               | 如果给定层上存在过渡，返回 true，否则返回 false。            |
+| [IsParameterControlledByCurve](Animator.IsParameterControlledByCurve.html) | 如果参数由曲线控制，返回 true，否则返回 false。              |
+| [MatchTarget](Animator.MatchTarget.html)                     | 自动调整 GameObject 的位置和旋转。                           |
+| [Play](Animator.Play.html)                                   | 播放一个状态。                                               |
+| [PlayInFixedTime](Animator.PlayInFixedTime.html)             | 播放一个状态。                                               |
+| [Rebind](Animator.Rebind.html)                               | 将所有动画属性和网格数据与动画器重新绑定。                   |
+| [ResetTrigger](Animator.ResetTrigger.html)                   | 重置给定触发器参数的值。                                     |
+| [SetBoneLocalRotation](Animator.SetBoneLocalRotation.html)   | 在反向动力学通道期间设置人形骨骼的局部旋转。                 |
+| [SetBool](Animator.SetBool.html)                             | 设置给定布尔参数的值。                                       |
+| [SetFloat](Animator.SetFloat.html)                           | 将浮点值发送到动画器以影响过渡。                             |
+| [SetIKHintPosition](Animator.SetIKHintPosition.html)         | 设置反向动力学提示的位置。                                   |
+| [SetIKHintPositionWeight](Animator.SetIKHintPositionWeight.html) | 设置反向动力学提示的转换权重（0 = 在反向动力学前的原始动画处，1 = 在提示处）。 |
+| [SetIKPosition](Animator.SetIKPosition.html)                 | 设置反向动力学目标的位置。                                   |
+| [SetIKPositionWeight](Animator.SetIKPositionWeight.html)     | 设置反向动力学目标的转换权重（0 = 在反向动力学前的原始动画处，1 = 在目标处）。 |
+| [SetIKRotation](Animator.SetIKRotation.html)                 | 设置反向动力学目标的旋转。                                   |
+| [SetIKRotationWeight](Animator.SetIKRotationWeight.html)     | 设置反向动力学目标的旋转权重（0 = 在反向动力学前旋转，1 = 在反向动力学目标处旋转）。 |
+| [SetInteger](Animator.SetInteger.html)                       | 设置给定整数参数的值。                                       |
+| [SetLayerWeight](Animator.SetLayerWeight.html)               | 设置给定索引处层的权重。                                     |
+| [SetLookAtPosition](Animator.SetLookAtPosition.html)         | 设置 LookAt 位置。                                           |
+| [SetLookAtWeight](Animator.SetLookAtWeight.html)             | 设置 LookAt 权重。                                           |
+| [SetTarget](Animator.SetTarget.html)                         | 为当前状态设置 AvatarTarget 和 targetNormalizedTime。        |
+| [SetTrigger](Animator.SetTrigger.html)                       | 设置给定触发器参数的值。                                     |
+| [StartPlayback](Animator.StartPlayback.html)                 | 将动画器设置为播放模式。                                     |
+| [StartRecording](Animator.StartRecording.html)               | 将动画器设置为录制模式，并分配大小为 frameCount 的循环缓冲区。 |
+| [StopPlayback](Animator.StopPlayback.html)                   | 停止动画器播放模式。停止播放后，化身恢复为游戏逻辑控制。     |
+| [StopRecording](Animator.StopRecording.html)                 | 停止动画器录制模式。                                         |
+| [Update](Animator.Update.html)                               | 根据 deltaTime 计算动画器。                                  |
+| [WriteDefaultValues](Animator.WriteDefaultValues.html)       | 强制写入存储在动画器中的默认值。                             |
+
+#### AnimatorStateInfo
+
+- 有关当前或下一个状态的信息。
+- IsName(string name)
+  - 当播放name对应动画时返回true;
+- normalizedTime
+  - 状态的标准化时间。
+  - 整数部分为状态已循环的次数。小数部分为当前循环的进度百分比 (0-1)。
+
+##### [变量]
+
+| [fullPathHash](AnimatorStateInfo-fullPathHash.html)       | 该状态的完整路径哈希。                                      |
+| --------------------------------------------------------- | ----------------------------------------------------------- |
+| [length](AnimatorStateInfo-length.html)                   | 状态的当前持续时间。                                        |
+| [loop](AnimatorStateInfo-loop.html)                       | 状态是否循环。                                              |
+| [normalizedTime](AnimatorStateInfo-normalizedTime.html)   | 状态的标准化时间。                                          |
+| [shortNameHash](AnimatorStateInfo-shortNameHash.html)     | 使用 Animator.StringToHash 生成哈希。哈希不包括父层的名称。 |
+| [speed](AnimatorStateInfo-speed.html)                     | 该动画的播放速度。1 表示正常播放速度。                      |
+| [speedMultiplier](AnimatorStateInfo-speedMultiplier.html) | 该状态的速度乘数。                                          |
+| [tagHash](AnimatorStateInfo-tagHash.html)                 | 状态的标记。                                                |
+
+##### [函数]
+
+| [IsName](AnimatorStateInfo.IsName.html) | name 是否匹配状态机中激活状态的名称？ |
+| --------------------------------------- | ------------------------------------- |
+| [IsTag](AnimatorStateInfo.IsTag.html)   | tag 是否匹配状态机中激活状态的标记？  |
 
 
 <div style="width: 100%; background-color: cornflowerblue; height: 5px;border: 1px blue groove;border-radius: 5px;"></div>
@@ -4990,6 +5137,20 @@ public class GroundDetector : MonoBehaviour
 	}
 }
 
+```
+
+### [协程播放Animator]
+
+```cs
+public IEnumerator PlayAnim(Animator animator, string animName, string toAnimName = "", int layer = 0){
+        AnimatorStateInfo state = animator.GetCurrentAnimatorStateInfo(layer);
+        animator.Play(animName);
+        while (state.normalizedTime <= 1f){
+            animator.Play(animName);
+            yield return null;
+        }
+        if (toAnimName != "") animator.Play(toAnimName);
+    }
 ```
 
 <div style="width: 100%; background-color: cornflowerblue; height: 5px;border: 1px blue groove;border-radius: 5px;"></div>
