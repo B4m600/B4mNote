@@ -261,4 +261,5 @@
 - sqlmap -u url -passwords
   - MySql的登录账户和密码
 - sqlmap -u url -D 指定数据库名 -tables 指定数据库名
-- 
+- sqlmap -u url --dbms=数据库名 --current-db
+  - 
