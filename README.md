@@ -254,12 +254,22 @@
 
 # SqlMap
 
+### sqlmap -u
+
 - sqlmap -u url -dbs
   - 查找全部库(暴库)
-- sqlmap -u url -current-user
+- sqlmap -u url --current-user
   - 当前使用的账户
+- sqlmap -u url -b
+  - 检索DBMS Banner
+- sqlmap -u url --current-db
+  - 当前的数据库
+- sqlmap -u url --hostname
+  - 当前主机名
+- sqlmap -u url --is-dba
+  - 检测当前用户是否为数据库管理员
 - sqlmap -u url -passwords
   - MySql的登录账户和密码
 - sqlmap -u url -D 指定数据库名 -tables 指定数据库名
 - sqlmap -u url --dbms=数据库名 --current-db
-  - 
+
