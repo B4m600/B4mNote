@@ -273,3 +273,15 @@
 - sqlmap -u url -D 指定数据库名 -tables 指定数据库名
 - sqlmap -u url --dbms=数据库名 --current-db
 
+# Python
+
+- python -m http.server 9999
+  - 在局域网链接http://0.0.0.0:9999上建立当前文件夹文件传输页面。 
+
+# Linux
+
+- clear
+- pwd
+  - 工作目录
+- chmod
+  - chmod +x Demo.exe

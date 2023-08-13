@@ -64,17 +64,62 @@ duplicates = list(set([x for x in lst if lst.count(x) > 1]))
 
 ### os
 
-- getcwd(): 获取当前工作目录;
-- listdir(path): 获取所给path中的所有文件/文件夹; list;
-- makedirs(path);
+- getcwd()
+
+  - 获取当前工作目录;
+
+- listdir(path)
+
+  - 获取所给path中的所有文件/文件夹;
+  - list;
+
+- mkdir(path)
+
+  - 创建一个名为path的目录。
+
+- rmdir(path)
+
+- makedirs(path, exist_ok)
+
+  - 创建一个名为path的目录。
+  - 若path包含多个目录，则创建所有目录。
+  - exist_ok: 取值False时若创建目录已存在则引发异常，取值True时则不会。
+
+- remove(file)
+
+- chdir(path)
+
+- walk(path)
+
+  ```python
+  for(dirpath, dirnames, filenames) in os.walk(path):
+      files += filenames
+      dires += dirnames
+  ```
+
+- listdire(path)
 
 #### [path]
 
 - realpath(path)
 - abspath(path)
 - exists(path)
+- getsize(path)
+- getmtime(path)
+- isdir(path)
 
+<hr>
 
+### shutil
+
+- rmtree(path, ignore_errors=True)
+  - 递归删除目录所有的子目录和子文件。
+
+<hr>
+### glob
+
+- glob(pat)
+  - `exes = glob.glob(r"d:/tmp/*.txt")`
 
 <hr>
 
