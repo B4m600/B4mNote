@@ -190,3 +190,50 @@ print(f"{battery.percent}% Plugged:{battery.power_plugged}")
 - now().strftime("%H:%M:%S");
 
 <hr>
+
+### asyncio
+
+- sleep(num)
+
+  - 异步函数中设置间隔。
+
+- run(func())
+
+  - 运行一个async关键词定义的函数。
+
+  ```python
+  async def func():
+      print("Hello")
+      await asyncio.sleep(1) # 异步等待1秒;
+      print("World")
+  asyncio.run(func())
+  ```
+
+
+<hr>
+
+### threading
+
+- active_count()
+  - 正在运行线程的数量
+- enumerate()
+  - 正在运行线程的列表
+- current_thread()
+  - 当前线程变量
+- Thread(group=None, target=None, name=None, args=(), daemon=None)
+
+```python
+def func(n):
+    pass
+T = threading.Thread(target=func,args=("func",))
+T.start()
+```
+
+```python
+import threading
+def my_function(arg1, arg2):
+    print(arg1, arg2)
+thread = threading.Thread(target=my_function, kwargs={'arg1': 'hello', 'arg2': 'world'})
+thread.start()
+```
+
