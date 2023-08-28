@@ -8,6 +8,8 @@
 
 #### [list]
 
+- index(ele)
+
 ```python
 lst = [1, 2, 3, 2, 4, 1, 5, 6, 5]
 duplicates = list(set([x for x in lst if lst.count(x) > 1]))
@@ -18,6 +20,19 @@ duplicates = list(set([x for x in lst if lst.count(x) > 1]))
 - format():
   - format(float num, "0.2f"): 保留2位小数;
   - format(float num, "^10.10f"): 多占10位空格，"^"代表居中;
+
+### [dic]
+
+- keys()
+
+- values()
+
+- items()
+
+  ```python
+  for key, value in my_dict.items():  
+      print(key, value)
+  ```
 
 #### [ANSI]
 
@@ -237,3 +252,30 @@ thread = threading.Thread(target=my_function, kwargs={'arg1': 'hello', 'arg2': '
 thread.start()
 ```
 
+<hr>
+
+### execjs
+
+- get().name
+
+  - 显示当前使用的javascript运行环境。
+  - `os.environ["EXECJS_RUNTIME"] = "Node"`: 设置运行环境为NodeJs。
+
+- get()
+
+  - eval("code")
+
+- eval("code")
+
+- compile("code")
+
+  ```python
+  ctx = execjs.compole("""
+  function add(x, y){
+  return x+y;
+  }
+  """)
+  ctx.call("add", 1, 2)
+  ```
+
+  

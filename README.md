@@ -12,16 +12,19 @@
   - Ctrl + Shift + I: 反选选区;
   - 图层->添加矢量蒙版: 根据通道层扣除背景;
     - Alt + 图层蒙版层: 进入蒙版;
+- Ctrl + Alt + 2: 高光选区;
 
 # PremierPro
 
-### [时间线]
+### [时间轴]
 
 - Shift + 左/右键头: 移动一个帧
 - M: 添加标记
 - I: 标记入点
 - O: 标记出点
   - ": 删除区域并拼接左右两侧;
+- Alt + 拖拽时间轴片段
+  - 复制到拖拽处
 
 # SublimeText
 
@@ -285,3 +288,13 @@
   - 工作目录
 - chmod
   - chmod +x Demo.exe
+- cat
+  - 查看文本文件内容
+
+# Minecraft
+
+- /set time day
+- /give [name] [item]
+- /spawnpoint [name]
+- /weather clear
+- /xp add [name]
