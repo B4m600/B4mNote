@@ -20,6 +20,9 @@ duplicates = list(set([x for x in lst if lst.count(x) > 1]))
 - format():
   - format(float num, "0.2f"): 保留2位小数;
   - format(float num, "^10.10f"): 多占10位空格，"^"代表居中;
+- split(str, num):
+  - str: 需要切片的字符串。
+  - num: 需要切片的次数，默认-1表示全部切片。
 
 ### [dic]
 
@@ -122,6 +125,18 @@ duplicates = list(set([x for x in lst if lst.count(x) > 1]))
 - getsize(path)
 - getmtime(path)
 - isdir(path)
+- dirname(file)
+  - 去掉文件名，返回其路径。
+
+<hr>
+
+### sys
+
+
+- exit(0)
+- argv
+  - 列表，执行python文件时输入的参数。
+  - `python demo.py a b c` -> `["demo.py", "a", "b", "c"]`
 
 <hr>
 
@@ -131,7 +146,9 @@ duplicates = list(set([x for x in lst if lst.count(x) > 1]))
   - 递归删除目录所有的子目录和子文件。
 
 <hr>
+
 ### glob
+
 
 - glob(pat)
   - `exes = glob.glob(r"d:/tmp/*.txt")`
@@ -278,4 +295,12 @@ thread.start()
   ctx.call("add", 1, 2)
   ```
 
-  
+
+### requests
+
+- Session()
+  - `session = requests.Session()`
+  - cookies
+    - `session.cookies.update(cookies)`
+    - `session.headers = headers`
+  - `res = session.post(url, data=data)`
