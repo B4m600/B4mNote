@@ -304,3 +304,41 @@ thread.start()
     - `session.cookies.update(cookies)`
     - `session.headers = headers`
   - `res = session.post(url, data=data)`
+
+### re
+
+- match
+
+```python
+>>> import re
+>>> result = re.match("itcast","itcast.cn")
+>>> result.group()
+'itcast'
+```
+
+- findall
+
+```python
+>>> import re
+>>> ret = re.findall(r"\d+", "python = 9999, c = 7890, c++ = 12345")
+>>> print(ret)
+['9999', '7890', '12345']
+```
+
+
+
+<table align="center" cellspacing="0"><tbody><tr><td style="vertical-align:middle;width:54pt;"><span style="color:#000000;">字符</span></td><td style="vertical-align:middle;width:364px;"><span style="color:#000000;">功能</span></td><td style="vertical-align:middle;width:628px;">位置</td></tr><tr><td style="vertical-align:middle;"><span style="color:#000000;">.</span></td><td style="vertical-align:middle;width:364px;"><span style="color:#000000;">匹配任意1个字符（除了\n）</span></td><td style="vertical-align:middle;width:628px;"></td></tr><tr><td style="vertical-align:middle;"><span style="color:#000000;">[<span style="color:#000000;"> ]</span></span></td><td style="vertical-align:middle;width:364px;"><span style="color:#000000;">匹配[ ]中列举的字符</span></td><td style="vertical-align:middle;width:628px;"></td></tr><tr><td style="vertical-align:middle;"><span style="color:#000000;">\d</span></td><td style="vertical-align:middle;width:364px;"><span style="color:#000000;">匹配数字，即0-9</span></td><td style="vertical-align:middle;width:628px;">可以写在字符集[...]中</td></tr><tr><td style="vertical-align:middle;"><span style="color:#000000;">\D</span></td><td style="vertical-align:middle;width:364px;"><span style="color:#000000;">匹配⾮数字，即不是数字</span></td><td style="vertical-align:middle;width:628px;">可以写在字符集[...]中</td></tr><tr><td style="vertical-align:middle;"><span style="color:#000000;">\s</span></td><td style="vertical-align:middle;width:364px;"><span style="color:#000000;">匹配空⽩，即空格，tab键</span></td><td style="vertical-align:middle;width:628px;">可以写在字符集[...]中</td></tr><tr><td style="vertical-align:middle;"><span style="color:#000000;">\S</span></td><td style="vertical-align:middle;width:364px;"><span style="color:#000000;">匹配⾮空⽩字符</span></td><td style="vertical-align:middle;width:628px;">可以写在字符集[...]中</td></tr><tr><td style="vertical-align:middle;"><span style="color:#000000;">\w</span></td><td style="vertical-align:middle;width:364px;"><span style="color:#000000;">匹配单词字符，即a-z、A-Z、0-9、_</span></td><td style="vertical-align:middle;width:628px;">可以写在字符集[...]中</td></tr><tr><td style="vertical-align:middle;"><span style="color:#000000;">\W</span></td><td style="vertical-align:middle;width:364px;"><span style="color:#000000;">匹配⾮单词字符</span></td><td style="vertical-align:middle;width:628px;">可以写在字符集[...]中</td></tr><tr><td style="vertical-align:middle;"><span style="color:#000000;">\w</span></td><td style="vertical-align:middle;width:364px;"><span style="color:#000000;">\w 匹配单词字符，即a-z、A-Z、0-9、_</span></td><td style="vertical-align:middle;width:628px;"></td></tr><tr><td style="vertical-align:middle;"><span style="color:#000000;">\W</span></td><td style="vertical-align:middle;width:364px;"><span style="color:#000000;">匹配⾮单词字符</span></td><td style="vertical-align:middle;width:628px;"></td></tr></tbody></table>
+
+<table align="center" cellspacing="0"><tbody><tr><td style="vertical-align:middle;width:54pt;">字符</td><td style="vertical-align:middle;width:469px;">功能</td><td style="vertical-align:middle;width:142px;">位置</td><td style="vertical-align:middle;width:1px;">表达式实例</td><td style="vertical-align:middle;width:120px;">完整匹配的字符串</td></tr><tr><td style="vertical-align:middle;width:54pt;"><span style="color:#000000;">*</span></td><td style="vertical-align:middle;width:469px;"><span style="color:#000000;">匹配前⼀个字符出现0次或者⽆限次，即可有可⽆</span></td><td style="vertical-align:middle;width:142px;">用在字符或(...)之后</td><td style="vertical-align:middle;width:1px;">abc*</td><td style="vertical-align:middle;width:120px;">abccc</td></tr><tr><td style="vertical-align:middle;"><span style="color:#000000;">+</span></td><td style="vertical-align:middle;width:469px;"><span style="color:#000000;">匹配前⼀个字符出现1次或者⽆限次，即⾄少有1次</span></td><td style="vertical-align:middle;width:142px;">用在字符或(...)之后</td><td style="vertical-align:middle;width:1px;">abc+</td><td style="vertical-align:middle;width:120px;">abccc</td></tr><tr><td style="vertical-align:middle;"><span style="color:#000000;">?</span></td><td style="vertical-align:middle;width:469px;"><span style="color:#000000;">匹配前⼀个字符出现1次或者0次，即要么有1次，要么没有</span></td><td style="vertical-align:middle;width:142px;">用在字符或(...)之后</td><td style="vertical-align:middle;width:1px;">abc?</td><td style="vertical-align:middle;width:120px;">ab,abc</td></tr><tr><td style="vertical-align:middle;"><span style="color:#000000;">{m}</span></td><td style="vertical-align:middle;width:469px;"><span style="color:#000000;">匹配前⼀个字符出现m次</span></td><td style="vertical-align:middle;width:142px;">用在字符或(...)之后</td><td style="vertical-align:middle;width:1px;">ab{2}c</td><td style="vertical-align:middle;width:120px;">abbc</td></tr><tr><td style="vertical-align:middle;"><span style="color:#000000;">{m,n}</span></td><td style="vertical-align:middle;width:469px;"><span style="color:#000000;">匹配前⼀个字符出现从m到n次，若省略m，则匹配0到n次，若省略n，则匹配m到无限次</span></td><td style="vertical-align:middle;width:142px;">用在字符或(...)之后</td><td style="vertical-align:middle;width:1px;">ab{1,2}c</td><td style="vertical-align:middle;width:120px;">abc,abbc</td></tr></tbody></table>
+
+`?P<M>`:`.group("M")`
+
+```python
+>>>match("-\d+","-3").group()
+>>>'-3'
+>>>match("-\d+","L-3").group()
+AttributeError: 'NoneType' object has no attribute 'group'
+>>>search("-\d+","L-3").group()
+>>>'-3'
+```
+

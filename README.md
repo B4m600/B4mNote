@@ -36,6 +36,13 @@
 # AfterEffects
 
 - Ctrl+Shift+C: 预合成
+- Ctrl+Shift+D: 裁剪所选素材
+
+# Animate
+
+- Enter: 播放
+- Ctrl+Enter: 窗口播放
+- F5: 插帧
 
 # Illustrator
 
@@ -91,6 +98,7 @@
 - Ctrl+PageDown: 向左切换当前窗口的标签页
 - Ctrl+PageUp: 向右切换当前窗口的标签页
 - Ctrl+R: 打开搜索框，自动带@，输入关键字，查找文件中的函数名
+- Ctrl+H: 替换。
 - Ctrl+Shift+/: 注释多行
 - Ctrl+Shift+[: 选中代码，按下快捷键，折叠代码
 - Ctrl+Shift+]: 选中代码，按下快捷键，展开代码
@@ -213,6 +221,8 @@
   - `cat ~/.ssh/id_rsa.pub`查看公钥内容;
 - git config --global user.name "用户名"
 - git config -- global user.email "邮箱"
+- git config --global http.postBuffer 1048576000
+  - 增大缓存容量，单位是Byte, 1048576000即1G。
 - ssh -T git@gitte.com || ssh -T git@github.com
   - 建立连接;
   - `Received disconnect from 162.241.169.11 port 22:2: Too many authentication failures
@@ -229,7 +239,8 @@
   -  将文件添加到本地仓库提交缓存; `git add test.txt`;
 - -- all: 所有改动文件都添加到缓存区;
 - git restore
-  - 修复指定文件; `git restore test.txt`;
+  - 修复指定文件: `git restore test.txt`;
+  - 从某个提交(例如 HEAD~1)中恢复文件: `git restore --source=HEAD~1 file.txt`
 - git commit
 
   - -m: 将提交描述信息作为参数; `git commit -m "添加了新文件\"test.txt\"。 "`; `git commit test.txt -m "更新单独文件"`;
@@ -493,6 +504,8 @@
   
 - `select A.id,A.name,B.age from {表A} A join {表B} B on A.id = B.id;`
 
+- `SHOW FUNCTION STATUS;` / `SELECT * FROM information_schema.routines WHERE routine_type = 'FUNCTION';`
+
 ## UNION / order by / group by
 
 - 将多个select语句(两个或多个)的结果组合到一个结果集中，并删除结果集中的重复数据。
@@ -555,6 +568,12 @@
   COL5 DECIMAL(5,2)
   );
   ```
+
+- CREATE USER '{新用户名}'@'localhost' IDENTIFIED BY '{密码}';
+  - `CREATE USER 'SHBMS_USER'@'localhost' IDENTIFIED BY 'your_password';`
+  - 创建用户。
+  - `GRANT ALL PRIVILEGES ON shbms_db.* TO 'SHBMS_USER'@'localhost';`
+  - 授权用户至指定数据库。
 
 ## DROP
 
@@ -652,6 +671,31 @@ env LANG=C.UTF-8 /bin/bash
   - `create table Test(num INT) DEFAULT CHARACTER SET utf8;`
 - 创建数据库时设置默认字符集
   - `create database Test DEFAULT CHARACTER SET utf8;`
+
+## [CMD]
+
+- flush privileges
+
+- source C:\Users\LEGION\Desktop\test.sql
+
+- ```mysql
+  create user root@'%' identified by '123456';
+  grant all privileges on *.* to root@'%' with grant option;
+  ```
+
+- desc {表名}
+
+```mysql
+mysql> desc goods_book;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| id    | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+1 row in set (0.02 sec)
+```
+
+
 
 # SqlMap
 
