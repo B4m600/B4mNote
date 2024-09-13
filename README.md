@@ -301,6 +301,16 @@
   - 如果本地分支名与远程分支名相同: `git push <远程主机名> <本地分支名>`;
   - --force: 如果本地版本与远程版本有差异,但又要强制推送;
   - --delete: 删除主机的分支; `git push origin --delete master`;
+  - `fatal: The current branch master has no upstream branch.`
+    - **原因：**没有将本地的分支与远程仓库的分支进行关联
+    - `git branch`
+      - `master`
+    - `git branch -a`
+      - `remotes/origin/master`
+    - 这时由于远程仓库太多，且分支较多。在默认情况下，`git push`时一般会上传到`origin`下的`master`分支上，然而当`repository`和`branch`过多，而又没有设置关联时，git就会产生疑问，因为它无法判断你的push目标。
+    - **解决：**
+      - `git push --set-upstream origin master`
+      - `git push -u origin master`
 
 # MySql
 
